@@ -1,3 +1,53 @@
+$("#createFile").click(function() {
+	// alert( this.id.toString().replace("add_", ""));
+	// $('#createFile').modal('show');
+	$("#tree").jstree("create", null, "last", {
+		"attr" : {
+			"rel" : "default"
+		}
+	});
+
+});
+$("#createFolder").click(function() {
+	// alert( this.id.toString().replace("add_", ""));
+	// $('#createFile').modal('show');
+	$("#tree").jstree("create", null, "last", {
+		"attr" : {
+			"rel" : "folder"
+		}
+	});
+
+});
+
+$("#edit").click(function() {
+	$("#tree").jstree("rename", null, "last", {});
+});
+function saveCreate() {
+	console.log(currentData);
+	$.post("./rest/workflow/savefile", {
+		"content" : $('#contentArea').val(),
+		"path" : currentData.rslt.obj.attr("path")
+	}, function(r) {
+		if (r.status) {
+//			$(data.rslt.obj).attr("id", "node_" + r.id);
+//			$(data.rslt.obj).attr("path", r.path);
+//			$('#myModalLabel').html(
+//					"Edit File "
+//							+ data.rslt.obj.attr("id").replace("node_", ""));
+//			$.getJSON("./rest/workflow/readfile?path="
+//					+ data.rslt.obj.attr("path"), function(data) {
+//				$('#contentArea').val(data.content);
+//
+//			});
+			$('#showFile').modal('hide');
+		} else {
+			$.jstree.rollback(data.rlbk);
+		}
+	})
+};
+function cancelCreate() {
+	$("#tree").jstree("rename", null, "last", {});
+}
 $(function() {
 	var dataBind;
 	$
@@ -14,14 +64,14 @@ $(function() {
 											// List of active plugins
 											"plugins" : [ "themes",
 													"json_data", "ui", "crrm",
-													"cookies", "dnd", "search",
-													"types", "hotkeys"
-													//,"contextmenu" 
-													],
+													"cookies", "dnd", "types",
+													"hotkeys"
+											// ,"contextmenu"
+											],
 
 											"json_data" : {
-												"data" : dataBind 
-											
+												"data" : dataBind
+
 											},
 											// Configuring the search plugin
 											"search" : {
@@ -139,9 +189,12 @@ $(function() {
 								.bind(
 										"create.jstree",
 										function(e, data) {
+											console.log(data.rslt.parent
+													.attr("path"));
+											// return;
 											$
 													.post(
-															"./server.php",
+															"./rest/workflow/create",
 															{
 																"operation" : "create_node",
 																"id" : data.rslt.parent
@@ -153,7 +206,9 @@ $(function() {
 																"position" : data.rslt.position,
 																"title" : data.rslt.name,
 																"type" : data.rslt.obj
-																		.attr("rel")
+																		.attr("rel"),
+																"path" : data.rslt.parent
+																		.attr("path")
 															},
 															function(r) {
 																if (r.status) {
@@ -163,122 +218,74 @@ $(function() {
 																					"id",
 																					"node_"
 																							+ r.id);
+																	$(
+																			data.rslt.obj)
+																			.attr(
+																					"path",
+																					r.path);
+																	$(
+																			'#myModalLabel')
+																			.html(
+																					"Edit File "
+																							+ data.rslt.obj
+																									.attr(
+																											"id")
+																									.replace(
+																											"node_",
+																											""));
+																	$
+																			.getJSON(
+																					"./rest/workflow/readfile?path="
+																							+ data.rslt.obj
+																									.attr("path"),
+																					function(
+																							data) {
+																						$(
+																								'#contentArea')
+																								.val(
+																										data.content);
+
+																					});
+																	$(
+																			'#showFile')
+																			.modal(
+																					'show');
 																} else {
 																	$.jstree
 																			.rollback(data.rlbk);
 																}
 															});
 										})
-								.bind(
-										"remove.jstree",
-										function(e, data) {
-											data.rslt.obj
-													.each(function() {
-														$
-																.ajax({
-																	async : false,
-																	type : 'POST',
-																	url : "./server.php",
-																	data : {
-																		"operation" : "remove_node",
-																		"id" : this.id
-																				.replace(
-																						"node_",
-																						"")
-																	},
-																	success : function(
-																			r) {
-																		if (!r.status) {
-																			data.inst
-																					.refresh();
-																		}
-																	}
-																});
-													});
-										})
+
 								.bind(
 										"rename.jstree",
 										function(e, data) {
+											console.log(data.rslt.obj);
+											if (data.rslt.obj.attr("rel") != "default")
+												return;
+											$('#myModalLabel')
+													.html(
+															"Edit File "
+																	+ data.rslt.obj
+																			.attr(
+																					"id")
+																			.replace(
+																					"node_",
+																					""));
 											$
-													.post(
-															"./server.php",
-															{
-																"operation" : "rename_node",
-																"id" : data.rslt.obj
-																		.attr(
-																				"id")
-																		.replace(
-																				"node_",
-																				""),
-																"title" : data.rslt.new_name
-															},
-															function(r) {
-																if (!r.status) {
-																	$.jstree
-																			.rollback(data.rlbk);
-																}
+													.getJSON(
+															"./rest/workflow/readfile?path="
+																	+ data.rslt.obj
+																			.attr("path"),
+															function(data) {
+																$(
+																		'#contentArea')
+																		.val(
+																				data.content);
+
 															});
-										})
-								.bind(
-										"move_node.jstree",
-										function(e, data) {
-											data.rslt.o
-													.each(function(i) {
-														$
-																.ajax({
-																	async : false,
-																	type : 'POST',
-																	url : "./server.php",
-																	data : {
-																		"operation" : "move_node",
-																		"id" : $(
-																				this)
-																				.attr(
-																						"id")
-																				.replace(
-																						"node_",
-																						""),
-																		"ref" : data.rslt.cr === -1 ? 1
-																				: data.rslt.np
-																						.attr(
-																								"id")
-																						.replace(
-																								"node_",
-																								""),
-																		"position" : data.rslt.cp
-																				+ i,
-																		"title" : data.rslt.name,
-																		"copy" : data.rslt.cy ? 1
-																				: 0
-																	},
-																	success : function(
-																			r) {
-																		if (!r.status) {
-																			$.jstree
-																					.rollback(data.rlbk);
-																		} else {
-																			$(
-																					data.rslt.oc)
-																					.attr(
-																							"id",
-																							"node_"
-																									+ r.id);
-																			if (data.rslt.cy
-																					&& $(
-																							data.rslt.oc)
-																							.children(
-																									"UL").length) {
-																				data.inst
-																						.refresh(data.inst
-																								._get_parent(data.rslt.oc));
-																			}
-																		}
-																		$(
-																				"#analyze")
-																				.click();
-																	}
-																});
-													});
+											currentData=data;
+											$('#showFile').modal('show');
 										});
 					});
 

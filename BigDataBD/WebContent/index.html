@@ -31,7 +31,8 @@ body {
 
 </head>
 <script>
-	var currentWorkFlow = "sfsdfsdff";
+var currentData;
+var currentWorkFlow = "sfsdfsdff";
 </script>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -111,16 +112,18 @@ body {
 							</div>
 						</div>
 					</li>
-					<li class="nav-header" style="font-size: 12px;">File Explorer</li>
+					<li class="nav-header" style="font-size: 12px;">Workflow File Explorer</li>
 					<li>
 						<div id='alog'
-							style="border: 1px solid gray; padding: 5px; height: 100px; margin-top: 15px; overflow: auto; font-family: Monospace;">
+							style="border: 1px solid gray; padding: 5px; height: 200px; margin-top: 15px; overflow: auto; font-family: Monospace;">
 							<div id="tree"></div>
 						</div>
-						<div style="margin-top:10px;height:40px;">
-							<button type="button" class="btn btn-primary" style="float:left">Create
+						<div style="margin-top: 10px; height: 40px;">
+							<button style="width:80px;font-size:12px;" type="button" id="createFile" class="btn btn-primary">New
 								File</button>
-							<button type="button" class="btn btn-primary" style="float:right">Edit File</button>
+							<button style="width:70px;font-size:12px;"  type="button" id="createFolder" class="btn btn-primary">Folder</button>
+							<button style="width:70px;font-size:12px;" type="button" id="edit" class="btn btn-primary">Edit
+								File</button>
 						</div>
 					</li>
 				</ul>
@@ -180,7 +183,24 @@ body {
 			<!--/.well -->
 		</div>
 	</div>
-
+	<div id="showFile" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="Edit File">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel" style="margin-left: 15px;">Edit File</h3>
+		</div>
+		<div class="modal-body">
+			<form>
+				<textarea rows="15" id="contentArea" style="width:515px;"></textarea>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" onclick="saveCreate()">Save</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true"
+				onclick="cancelCreate()">Close</button>
+		</div>
+	</div>
 
 	<!-- /container -->
 

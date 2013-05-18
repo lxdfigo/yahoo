@@ -53,7 +53,7 @@ public class FileModel {
 	public String toString() {
 		StringBuilder rs = new StringBuilder();
 		if(children.size()!=0) 		rs.append("{\"children\":").append(children.toString()).append(",");
-		else rs.append("{\"children\":").append(children.toString()).append(",");
+		else rs.append("{\"children\":").append("null").append(",");
 		rs.append("\"data\":\"").append(data).append("\",")
 		.append("\"attr\":").append(attr).append(",")
 		.append("\"state\":\"").append(state).append("\",")

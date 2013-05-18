@@ -9,6 +9,14 @@ import org.json.JSONObject;
 public class Node {
 	private String id;
 	private String rel;
+	private String path;
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	public String getId() {
 		return id;
@@ -29,7 +37,8 @@ public class Node {
 	public String toString() {
 		StringBuilder rs = new StringBuilder();
 		rs.append("{\"id\":\"").append(id).append("\",")
-		.append("\"rel\":\"").append(rel).append("\"}");
+		.append("\"rel\":\"").append(rel).append("\",")
+		.append("\"path\":\"").append(path.replaceAll("\\\\", "/")).append("\"}");
 		return rs.toString();
 	}
 }
