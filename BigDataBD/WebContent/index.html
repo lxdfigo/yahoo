@@ -36,10 +36,11 @@ body {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand"  style="padding:0;"  href="#"><img src="img/logomod.png" /></a>
+				<a class="brand" style="padding: 0;" href="#"><img
+					src="img/logomod.png" /></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-  
+
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#" onClick="return false;">Workflow
 								<b class="caret"></b>
@@ -49,8 +50,8 @@ body {
 								<li><a href="#">Save</a></li>
 								<li><a href="#">Run</a></li>
 							</ul></li>
-						<li><a id="tooltip" href="#"
-							data-toggle="tooltip" title="Configuration">Configuration</a></li>
+						<li><a id="tooltip" href="#" data-toggle="tooltip"
+							title="Configuration">Configuration</a></li>
 					</ul>
 					<!--/.nav-collapse -->
 					<!-- 
@@ -65,7 +66,7 @@ body {
 
 	<div class="container-fluid">
 
-		<div class="span3">
+		<div class="span2">
 			<div class="bs-docs-example">
 				<div class="accordion" id="accordion2">
 					<div class="accordion-group">
@@ -98,7 +99,7 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="span9">
+		<div class="span8">
 			<ul class="nav nav-tabs" id="myTab">
 				<li class="active"><a href="#Workflow">Workflow</a></li>
 				<li><a href="#JSON">JSON</a></li>
@@ -119,23 +120,39 @@ body {
 				})
 			</script>
 		</div>
+		<div class="span3">
+			<div class="well sidebar-nav" style="padding: 5px;">
+				<ul class="nav nav-list">
+					<li class="nav-header" style="font-size: 12px;">Configurations</li>
+					<li><div
+							style="height: 300px; background: blue; overflow-y: scroll">
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+							<p>Line One:</p>
+						</div></li>
 
-	</div>
-	<div id="menu"
-		style="width: 100px; height: 100px; position: absolute; top: 70px; right: 10px;; background: blue;">
+					<li class="nav-header" style="font-size: 12px;">Workflows</li>
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
 
+				</ul>
+			</div>
+			<!--/.well -->
+		</div>
 	</div>
-	<script type="text/javascript">
-		$("#menu").mouseenter(
-				function() {
-					$(this).stop(true, true).css("width", "100px").siblings()
-							.css("width", "100px");
-				}).mouseleave(
-				function() {
-					$(this).stop(true, true).css("width", "150px").siblings()
-							.css("width", "150px");
-				});
-	</script>
+
+
 	<!-- /container -->
 
 	<!-- Le javascript
