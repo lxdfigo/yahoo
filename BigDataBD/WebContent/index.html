@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bootstrap, from Twitter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- Le styles -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<style>
+body {
+	padding-top: 60px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
+}
+</style>
+<link href="css/custom.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand"  style="padding:0;"  href="#"><img src="img/logomod.png" /></a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+  
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="#" onClick="return false;">Workflow
+								<b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Create New Workflow</a></li>
+								<li><a href="#">Save</a></li>
+								<li><a href="#">Run</a></li>
+							</ul></li>
+						<li class="active"><a id="tooltip" href="#"
+							data-toggle="tooltip" title="Create a new workflow">Configuration</a></li>
+					</ul>
+					<!--/.nav-collapse -->
+					<!-- 
+					<button class="btn btn-large btn-primary" type="submit"
+						style="height: 30px; font-size: 14px; padding-top: -15px;">Run</button>
+-->
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="span3">
+			<div class="bs-docs-example">
+				<div class="accordion" id="accordion2">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseOne">Oozie</a>
+						</div>
+						<div id="collapseOne" class="accordion-body collapse in">
+							<div class="accordion-inner">Anim pariatur cliche Tools 1</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseTwo">S4</a>
+						</div>
+						<div id="collapseTwo" class="accordion-body collapse">
+							<div class="accordion-inner">Anim pariatur cliche Tools 2</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#collapseThree">General</a>
+						</div>
+						<div id="collapseThree" class="accordion-body collapse">
+							<div class="accordion-inner">Tools3</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="span9">
+			<ul class="nav nav-tabs" id="myTab">
+				<li class="active"><a href="#Workflow">Workflow</a></li>
+				<li><a href="#JSON">JSON</a></li>
+				<li><a href="#XML">XML</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="Workflow">
+					<div style="height: 470px; background: red"></div>
+				</div>
+				<div class="tab-pane" id="JSON">...</div>
+				<div class="tab-pane" id="XML">...</div>
+			</div>
+			<script>
+				$('#myTab a').click(function(e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			</script>
+		</div>
+
+	</div>
+	<div id="menu"
+		style="width: 100px; height: 100px; position: absolute; top: 70px; right: 10px;; background: blue;">
+
+	</div>
+	<script type="text/javascript">
+		$("#menu").mouseenter(
+				function() {
+					$(this).stop(true, true).css("width", "100px").siblings()
+							.css("width", "100px");
+				}).mouseleave(
+				function() {
+					$(this).stop(true, true).css("width", "150px").siblings()
+							.css("width", "150px");
+				});
+	</script>
+	<!-- /container -->
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+</body>
+</html>
