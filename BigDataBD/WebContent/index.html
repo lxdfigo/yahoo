@@ -8,9 +8,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.hotkeys.js"></script>
+<script src="js/jquery.jstree.js"></script>
 <script src="js/bootstrap.js"></script>
 <!-- Le styles -->
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap_sexy.css" rel="stylesheet">
+<link href="css/bootstrap-responsive_sexy.css" rel="stylesheet">
 <style>
 body {
 	padding-top: 60px;
@@ -26,7 +30,9 @@ body {
 
 
 </head>
-
+<script>
+	var currentWorkFlow = "sfsdfsdff";
+</script>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
@@ -66,40 +72,63 @@ body {
 
 	<div class="container-fluid">
 
-		<div class="span2">
-			<div class="bs-docs-example">
-				<div class="accordion" id="accordion2">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseOne">Oozie</a>
+		<div class="span3">
+			<div class="well sidebar-nav" style="padding: 5px;">
+				<ul class="nav nav-list">
+					<li class="nav-header" style="font-size: 12px;">Tool Kit</li>
+					<li>
+						<div class="bs-docs-example">
+							<div class="accordion" id="accordion2">
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse"
+											data-parent="#accordion2" href="#collapseOne">Oozie</a>
+									</div>
+									<div id="collapseOne" class="accordion-body collapse in">
+										<div class="accordion-inner">Anim pariatur cliche Tools
+											1</div>
+									</div>
+								</div>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse"
+											data-parent="#accordion2" href="#collapseTwo">S4</a>
+									</div>
+									<div id="collapseTwo" class="accordion-body collapse">
+										<div class="accordion-inner">Anim pariatur cliche Tools
+											2</div>
+									</div>
+								</div>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse"
+											data-parent="#accordion2" href="#collapseThree">General</a>
+									</div>
+									<div id="collapseThree" class="accordion-body collapse">
+										<div class="accordion-inner">Tools3</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div id="collapseOne" class="accordion-body collapse in">
-							<div class="accordion-inner">Anim pariatur cliche Tools 1</div>
+					</li>
+					<li class="nav-header" style="font-size: 12px;">File Explorer</li>
+					<li>
+						<div id='alog'
+							style="border: 1px solid gray; padding: 5px; height: 100px; margin-top: 15px; overflow: auto; font-family: Monospace;">
+							<div id="tree"></div>
 						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseTwo">S4</a>
+						<div style="margin-top:10px;height:40px;">
+							<button type="button" class="btn btn-primary" style="float:left">Create
+								File</button>
+							<button type="button" class="btn btn-primary" style="float:right">Edit File</button>
 						</div>
-						<div id="collapseTwo" class="accordion-body collapse">
-							<div class="accordion-inner">Anim pariatur cliche Tools 2</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion2" href="#collapseThree">General</a>
-						</div>
-						<div id="collapseThree" class="accordion-body collapse">
-							<div class="accordion-inner">Tools3</div>
-						</div>
-					</div>
-				</div>
+					</li>
+				</ul>
 			</div>
+
+
 		</div>
-		<div class="span8">
+		<div class="span7">
 			<ul class="nav nav-tabs" id="myTab">
 				<li class="active"><a href="#Workflow">Workflow</a></li>
 				<li><a href="#JSON">JSON</a></li>
@@ -158,6 +187,6 @@ body {
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-
+	<script type="text/javascript" src="./js/custom.js"></script>
 </body>
 </html>
